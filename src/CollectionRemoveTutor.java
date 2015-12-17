@@ -41,14 +41,21 @@ public class CollectionRemoveTutor extends Tutor {
 
     // Remove all entrances of word "Cow"
     public void unCow(List<String> list) {
-
+        List<String> toRemove = new ArrayList<>();
+        toRemove.add("Cow");
+        list.removeAll(toRemove);
     }
 
     // Remove all entrances having 3 letters
     public void un3Letterization(List<String> list) {
-
+        List<String> toRemove = new ArrayList<>();
+        for (int i=0;i<list.size();i++) {
+            if (list.get(i).length()==3) {
+                toRemove.add(list.get(i));
+            }
+        }
+        list.removeAll(toRemove);
     }
-
 
     @Test
     public void testRemove() {
