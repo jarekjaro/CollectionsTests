@@ -51,7 +51,7 @@ public class MapTutor extends Tutor {
      */
     public void fillLengthAnimalsMap() {
         Set<Integer> listOfKeys = new HashSet<>();
-        for (String animal:animals) {
+        for (String animal : animals) {
             listOfKeys.add(animal.length());
         }
         Iterator it = listOfKeys.iterator();

@@ -5,19 +5,21 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 /**
- *	1) Implement method Set<Animal> getAnimalsOrderedByNameSet()
- * 		and method Set<Animal> getAnimalsOrderedByNameSetDesc()
+ * 1) Implement method Set<Animal> getAnimalsOrderedByNameSet()
+ * and method Set<Animal> getAnimalsOrderedByNameSetDesc()
  */
 public class ComparableTutor extends Tutor {
-    String [] animals =
+    String[] animals =
             {"Cow", "Goose", "Cat", "Dog", "Elephant",
                     "Rabbit", "Snake", "Chicken", "Horse", "Human"};
 
-    class Animal implements Comparable{
+    class Animal implements Comparable {
         String name;
+
         public Animal(String name) {
             this.name = name;
         }
+
         @Override
         public String toString() {
             return name;
@@ -52,7 +54,7 @@ public class ComparableTutor extends Tutor {
 
     public Set<Animal> getAnimalsOrderedByNameSet() {
         Animal[] animalsTable = new Animal[animals.length];
-        for (int i=0;i<animals.length;i++) {
+        for (int i = 0; i < animals.length; i++) {
             animalsTable[i] = new Animal(animals[i]);
         }
         TreeSet<Animal> animalsSet = new TreeSet<>();
@@ -66,11 +68,10 @@ public class ComparableTutor extends Tutor {
      * Method should return a Set of Animal instances,
      * ordered by the name in reverse order.
      * Use TreeSet for that and pass a Comparator implementation as a parameter.
-     *
      */
     public Set<Animal> getAnimalsOrderedByNameSetDesc() {
         Animal[] animalsTable = new Animal[animals.length];
-        for (int i=0;i<animals.length;i++) {
+        for (int i = 0; i < animals.length; i++) {
             animalsTable[i] = new Animal(animals[i]);
         }
         TreeSet<Animal> animalsSet = new TreeSet<>(new Comparator<Animal>() {
@@ -78,26 +79,26 @@ public class ComparableTutor extends Tutor {
                 return o1.compareTo(o2);
             }
         }.reversed());
-            for(Animal animal:animalsTable)
-                animalsSet.add(animal);
-            return animalsSet;
-        }
+        for (Animal animal : animalsTable)
+            animalsSet.add(animal);
+        return animalsSet;
+    }
 
     public String joinByCycle(Collection<?> c) {
-        if (c==null) return "";
+        if (c == null) return "";
         StringBuilder builder = new StringBuilder();
-        for (Object s: c) {
+        for (Object s : c) {
             builder.append(s);
-            if (builder.length()>0) builder.append(", ");
+            if (builder.length() > 0) builder.append(", ");
         }
         return builder.toString();
     }
 
     @Test
     public void testCollections() {
-        log("getAnimalsList: "+joinByCycle(Arrays.asList(animals)));
-        log("getAnimalsOrderedByNameSet: "+joinByCycle(getAnimalsOrderedByNameSet()));
-        log("getAnimalsOrderedByNameSetDesc: "+joinByCycle(getAnimalsOrderedByNameSetDesc()));
+        log("getAnimalsList: " + joinByCycle(Arrays.asList(animals)));
+        log("getAnimalsOrderedByNameSet: " + joinByCycle(getAnimalsOrderedByNameSet()));
+        log("getAnimalsOrderedByNameSetDesc: " + joinByCycle(getAnimalsOrderedByNameSetDesc()));
     }
 
     @Test

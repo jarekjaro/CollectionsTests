@@ -11,26 +11,26 @@ import static org.junit.Assert.assertTrue;
 /**
  * 1) Remove all entrances of word "Cow" and print the result
  * 2) Remove all entrances having 3 letters and print the result
- *
+ * <p>
  * 3) Implement method removeIf which will take interface ShouldRemove as a parameter:
- * 		<T> List<T> removeIf(List<T> list, ShouldRemove<T> shouldRemove)
- *
- * 		This method have to iterate over the list and
- * 		remove those elements for which ShouldRemove.check() returns true
+ * <T> List<T> removeIf(List<T> list, ShouldRemove<T> shouldRemove)
+ * <p>
+ * This method have to iterate over the list and
+ * remove those elements for which ShouldRemove.check() returns true
  */
 interface ShouldRemove<T> {
     boolean check(T elem);
 }
 
 public class CollectionRemoveTutor extends Tutor {
-    String[] animals = { "Cow", "Goose", "Cat", "Dog", "Elephant", "Rabbit",
-            "Snake", "Chicken", "Horse", "Human" };
+    String[] animals = {"Cow", "Goose", "Cat", "Dog", "Elephant", "Rabbit",
+            "Snake", "Chicken", "Horse", "Human"};
 
     public String joinByCycle(Collection<?> c) {
         StringBuilder builder = new StringBuilder();
-        for (Object s: c) {
+        for (Object s : c) {
             builder.append(s);
-            if (builder.length()>0) builder.append(", ");
+            if (builder.length() > 0) builder.append(", ");
         }
         return builder.toString();
     }
@@ -49,8 +49,8 @@ public class CollectionRemoveTutor extends Tutor {
     // Remove all entrances having 3 letters
     public void un3Letterization(List<String> list) {
         List<String> toRemove = new ArrayList<>();
-        for (int i=0;i<list.size();i++) {
-            if (list.get(i).length()==3) {
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).length() == 3) {
                 toRemove.add(list.get(i));
             }
         }
@@ -63,11 +63,11 @@ public class CollectionRemoveTutor extends Tutor {
 
         list = getAnimals();
         unCow(list);
-        log("list after remove: "+joinByCycle(list));
+        log("list after remove: " + joinByCycle(list));
 
         list = getAnimals();
         un3Letterization(list);
-        log("list after remove 3 letters animals: "+joinByCycle(list));
+        log("list after remove 3 letters animals: " + joinByCycle(list));
     }
 
     @Test

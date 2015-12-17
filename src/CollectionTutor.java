@@ -45,13 +45,13 @@ public class CollectionTutor extends Tutor {
      * separated by commas, using for cycle
      */
     public String joinByCycle(Collection<?> c) {
-        Object[] table =c.toArray();
+        Object[] table = c.toArray();
         StringBuilder sb = new StringBuilder();
-        for (int i=0;i<c.size()-1;i++) {
+        for (int i = 0; i < c.size() - 1; i++) {
             sb.append(table[i])
                     .append(",");
         }
-        sb.append(table[c.size()-1]);
+        sb.append(table[c.size() - 1]);
         return sb.toString();
     }
 
@@ -65,8 +65,8 @@ public class CollectionTutor extends Tutor {
         for (Iterator<?> iterator = c.iterator(); iterator.hasNext(); ) {
 
             sb.append(iterator.next());
-            if (iterator.hasNext()){
-                        sb.append(",");
+            if (iterator.hasNext()) {
+                sb.append(",");
             }
 
         }
