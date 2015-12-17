@@ -1,8 +1,4 @@
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-import java.util.SortedMap;
-import java.util.TreeMap;
+import java.util.*;
 
 import org.junit.Test;
 
@@ -11,16 +7,16 @@ import static org.junit.Assert.assertTrue;
 
 /**
  * 1) Implement methods fillAnimalsLengthMap() and printMap().
- * 		Look at the result of program execution.
+ * Look at the result of program execution.
  * 2) Implement methods fillLengthAnimalsMap() and printMapOfSets()
- * 		Look at the result of program execution.
+ * Look at the result of program execution.
  */
 public class MapTutor extends Tutor {
-    Map<String,Integer> animalsLengthMap = new HashMap<String, Integer>();
+    Map<String, Integer> animalsLengthMap = new HashMap<String, Integer>();
 
-    Map<Integer,Set<String>> lengthAnimalsMap = new HashMap<Integer,Set<String>>();
+    Map<Integer, Set<String>> lengthAnimalsMap = new HashMap<Integer, Set<String>>();
 
-    String [] animals =
+    String[] animals =
             {"Cow", "Goose", "Cat", "Dog", "Elephant",
                     "Rabbit", "Snake", "Chicken", "Horse", "Human"};
 
@@ -32,13 +28,17 @@ public class MapTutor extends Tutor {
      * "Snake" => 5
      */
     public void fillAnimalsLengthMap() {
+        for (String animal : animals) {
+            animalsLengthMap.put(animal, animal.length());
+        }
     }
 
     /**
      * Prints the table animalsLengthMap,
      * by printing the key and value
      */
-    public void printMap(Map<?,?> map) {
+    public void printMap(Map<?, ?> map) {
+        map.forEach((o, o2) -> System.out.println(o + " " + o2));
     }
 
     /**
@@ -50,13 +50,29 @@ public class MapTutor extends Tutor {
      * 6 => Rabbit
      */
     public void fillLengthAnimalsMap() {
+        Set<Integer> listOfKeys = new HashSet<>();
+        for (String animal:animals) {
+            listOfKeys.add(animal.length());
+        }
+        Iterator it = listOfKeys.iterator();
+        while (it.hasNext()) {
+            Set<String> setOfAnimals = new HashSet<>();
+            int temp = (int) it.next();
+            for (String animal : animals) {
+                if (animal.length() == temp) {
+                    setOfAnimals.add(animal);
+                }
+            }
+            lengthAnimalsMap.put(temp, setOfAnimals);
+        }
     }
 
     /**
      * prints the contents of lengthAnimalsMap,
      * by printing the key and list of values
      */
-    public void printMapOfSets(Map<Integer,Set<String>> map) {
+    public void printMapOfSets(Map<Integer, Set<String>> map) {
+        map.forEach((o, o2) -> System.out.println(o + " => " + o2));
     }
 
     @Test
@@ -66,20 +82,20 @@ public class MapTutor extends Tutor {
         printMap(animalsLengthMap);
 
         log("== printMap treemap animalsLengthMap");
-        SortedMap<String, Integer> sortedMap = new TreeMap<String,Integer>(animalsLengthMap);
+        SortedMap<String, Integer> sortedMap = new TreeMap<String, Integer>(animalsLengthMap);
         printMap(sortedMap);
 
         log("== print lengthAnimalsMap");
         fillLengthAnimalsMap();
         printMapOfSets(lengthAnimalsMap);
 
-        SortedMap<Integer,Set<String>> sortedMap2 = new TreeMap<Integer,Set<String>>(lengthAnimalsMap);
+        SortedMap<Integer, Set<String>> sortedMap2 = new TreeMap<Integer, Set<String>>(lengthAnimalsMap);
 
         log("== sortedMap headSet where key<6");
         printMapOfSets(sortedMap2.headMap(6));
 
         log("== sortedMap subMap 5..7");
-        printMapOfSets(sortedMap2.subMap(5,7));
+        printMapOfSets(sortedMap2.subMap(5, 7));
     }
 
     @Test
